@@ -18,16 +18,14 @@ def DivNCon(S):
         d3 = min(d1,d2)
         SL = []
         SR = []
-        L = (S[floor(len(S)/2) - 1][0] + S[floor(len(S)/2)][0])/2
+        L  = S[floor(len(S)/2)][0] 
         
-        for i in range(len(S[:floor(len(S)/2)])-1, -1, -1):
-            if S[i][0] < L-d3:
-                break
-            SL.append(S[i])
-        for i in range(0, len(S[floor(len(S)/2):-1])):
-            if S[i][0] > L+d3:
-                break
-            SR.append(S[i])
+        for i in range(len(S)):
+            if abs(S[i][0] - L) < d3:
+                if S[i][0] < L:
+                    SL.append(S[i])
+                else:
+                    SR.append(S[i])
         
         for i in range(len(SL)):
             for j in range(len(SR)):
@@ -39,6 +37,8 @@ def DivNCon(S):
 
 def EuclideanDistance(a, b):
     # return np.sqrt(np.sum((a - b)**2))
+    # print(a, b)
+    # print(np.linalg.norm(a-b))
     return np.linalg.norm(a-b)
 
 
