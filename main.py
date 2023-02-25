@@ -30,7 +30,10 @@ for i in range(n):
 # print(Stest)
 print(List_Points)
 # print(DivNCon(sortList(Stest)))
+
+List_PointsBruteForce = List_Points.copy()
 hasil = DivNCon(sortList(List_Points))
+# hasil = BruteForce(sortList(List_PointsBruteForce))  
 print("titik 1 = ", hasil[1])
 print("titik 2 = ", hasil[2])
 print(hasil[0])
