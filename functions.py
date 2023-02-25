@@ -56,3 +56,12 @@ def EuclideanDistance(a, b):
 
 def sortList(S):
     return S[S[:,0].argsort()]
+
+
+def BruteForce(S):
+    d = EuclideanDistance(S[0], S[1])
+    for i in range(len(S)):
+        for j in range(i+1, len(S)):
+            if EuclideanDistance(S[i], S[j])[0] < d[0]:
+                d = EuclideanDistance(S[i], S[j])
+    return d
