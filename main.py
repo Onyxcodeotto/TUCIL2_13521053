@@ -10,6 +10,7 @@ dimension = 2
 
 # Stest = np.array([[1,1,0],[3,0,1],[7,8,9]])
 Stest = np.array([[4,3,1],[3,1,0],[3,3,4],[4,3,0]])
+Stest2 = np.array([[78, 75],[80, 85],[78, 20],[57, 47]])
 # Stest = np.array([[1,0,0],[2,0,1],[2,0,2]])
 # print(EuclideanDistance(Stest[0], Stest[1]))
 
@@ -32,9 +33,16 @@ print(List_Points)
 # print(DivNCon(sortList(Stest)))
 
 List_PointsBruteForce = List_Points.copy()
-hasil = DivNCon(sortList(List_Points))
-# hasil = BruteForce(sortList(List_PointsBruteForce))  
+# hasil = DivNCon(sortList(List_Points))
+# hasilB = BruteForce(sortList(List_PointsBruteForce))  
+hasil = DivNCon(sortList(Stest2))
+hasilB = BruteForce(sortList(Stest2))  
 print("titik 1 = ", hasil[1])
 print("titik 2 = ", hasil[2])
 print(hasil[0])
+
+print()
+print("titik 1 Brute = ", hasilB[1])
+print("titik 2 Brute = ", hasilB[2])
+print(hasilB[0])
 # from viz import *
