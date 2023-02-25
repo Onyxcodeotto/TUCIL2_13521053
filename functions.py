@@ -29,17 +29,18 @@ def DivNCon(S):
         SL = []
         SR = []
         L  = S[floor(len(S)/2)][0] 
-        
+        rDistLeft = L - d3[0]
+        rDistRight = L + d3[0]
         for i in range(len(S)):
-            if abs(S[i][0] - L) < d3[0]:
-                if S[i][0] < L:
-                    SL.append(S[i])
-                else:
+            if S[i][0] > rDistLeft and S[i][0] < rDistRight:
+                if S[i][0] > L:
                     SR.append(S[i])
+                else:
+                    SL.append(S[i])
         
         for i in range(len(SL)):
             for j in range(len(SR)):
-                if EuclideanDistance(SL[i], SR[j])[0] < d3[0]: 
+                if EuclideanDistance(SL[i], SR[j])[0] <= d3[0]:
                     d3 = EuclideanDistance(SL[i], SR[j])
                     # point1 = EuclideanDistance(SL[j], SR[i])[1]
                     # point2 = EuclideanDistance(SL[j], SR[i])[2]
