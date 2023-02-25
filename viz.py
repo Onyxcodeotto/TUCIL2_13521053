@@ -5,7 +5,10 @@ import matplotlib.pyplot as plt
 from main import *
 
 fig = plt.figure()
-
+pointHasilColor = 'red'
+pointsColor = 'blue'
+lineHasilColor = 'green'
+lineWidthConts = 2
 # syntax for 3-D projection
 if (dimension == 3):
     ax = plt.axes(projection =str(dimension)+'d') 
@@ -33,9 +36,10 @@ if (dimension == 3):
     # z = 1
 
     # plotting
-    ax.plot3D(xhasil, yhasil, zhasil, 'green')
+    ax.plot3D(xhasil, yhasil, zhasil, lineHasilColor, linewidth = lineWidthConts)
     # make points
-    ax.scatter3D( x, y, z, color = 'red')
+    ax.scatter3D( x, y, z, color = pointsColor)
+    ax.scatter3D( xhasil, yhasil, zhasil, color = pointHasilColor)
     ax.set_title('3D line plot geeks for geeks')
     ax.set_xlabel('x-axis')
     ax.set_ylabel('y-axis')
@@ -53,9 +57,10 @@ elif(dimension == 2 ):
     # print(x, y)
     
     # plotting
-    plt.plot(xhasil, yhasil, 'green')
+    plt.plot(xhasil, yhasil, lineHasilColor, linewidth = lineWidthConts)
     # make points
-    plt.scatter( x, y, color = 'red')
+    plt.scatter( x, y, color = pointsColor)
+    plt.scatter( xhasil, yhasil, color = pointHasilColor)
     plt.title('2D line plot geeks for geeks')
     plt.xlabel('x-axis')
     plt.ylabel('y-axis')
@@ -71,13 +76,15 @@ elif (dimension == 1):
     print(xhasil, yhasil)
     
     # plotting
-    plt.plot(xhasil, yhasil, 'green')
+    plt.plot(xhasil, yhasil, lineHasilColor, linewidth = lineWidthConts)
     # make points
-    plt.scatter( x, y, color = 'red')
+    plt.scatter( x, y, color = pointsColor)
+    plt.scatter( xhasil, yhasil, color = pointHasilColor)
     plt.title('2D line plot geeks for geeks')
     plt.xlabel('x-axis')
     plt.ylabel('y-axis')
-    plt.show()
-    
+    plt.show()  
 else :
     print('Error plotting, dimension not supported')
+    
+# figBrute = plt.figure()
