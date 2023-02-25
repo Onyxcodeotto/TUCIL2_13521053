@@ -4,12 +4,14 @@ from math import *
 def DivNCon(S):
     if len(S)==3:
         d2 = DivNCon(S[1:3])
-        if d2[0] <= EuclideanDistance(S[0], S[1])[0] and d2[0] <= EuclideanDistance(S[0], S[2])[0]:
+        dm1 = EuclideanDistance(S[0], S[1])
+        dm2 = EuclideanDistance(S[0], S[2])
+        if d2[0] <=  dm1[0] and d2[0] <= dm2[0]:
             return d2
-        elif d2[0] <= EuclideanDistance(S[0], S[1])[0]:
-            return EuclideanDistance(S[0], S[1])
+        elif dm1[0] <= dm2[0] and dm1[0] <= d2[0]:
+            return dm1
         else:
-            return EuclideanDistance(S[0], S[2])
+            return dm2
         # return min(d2, EuclideanDistance(S[0], S[1]), EuclideanDistance(S[0], S[2]))
         
     elif(len(S) == 2):
@@ -33,7 +35,7 @@ def DivNCon(S):
         rDistRight = L + d3[0]
         for i in range(len(S)):
             if S[i][0] > rDistLeft and S[i][0] < rDistRight:
-                if S[i][0] > L:
+                if S[i][0] >= L:
                     SR.append(S[i])
                 else:
                     SL.append(S[i])
