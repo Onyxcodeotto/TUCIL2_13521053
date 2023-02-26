@@ -1,5 +1,95 @@
 import numpy as np
 from math import *
+def DivNConBigD(S,D):
+    # S: Set of points
+    # D: Dimension
+    # O(n)=n (log(n))^(d-1)
+    # Solusi O(nlog(n)) nya belum paham
+    if (len(S)==3):
+        print("3 nih")
+        print(S)
+        d2 = DivNCon(S[1:3])
+        dm1 = EuclideanDistance(S[0], S[1])
+        dm2 = EuclideanDistance(S[0], S[2])
+        if d2[0] <=  dm1[0] and d2[0] <= dm2[0]:
+            return d2
+        elif dm1[0] <= dm2[0] and dm1[0] <= d2[0]:
+            return dm1
+        else:
+            return dm2
+        
+    elif(len(S) == 2):
+        print(S)
+        return EuclideanDistance(S[0],S[1])
+    
+    if(D>2):
+        #Project point into X axis
+        return DivNConBigD(sortList([coor[1:] for coor in S]), D-1)
+    else:
+        d1 = DivNConBigD(S[:floor(len(S)/2)], D)
+        d2 = DivNConBigD(S[floor(len(S)/2):], D)
+        ### Get median and Sparse###
+        if (d1[0] <= d2[0]):
+            d3 = d1
+        else:
+            d3 = d2
+        SL = []
+        SR = []
+        if(len(S) %2 == 0):
+            L= (S[floor(len(S)/2)][0] + floor(len(S)/2)-1)/2
+        else:
+            L  = S[floor(len(S)/2)][0]
+        rDistLeft = L - d3[0]
+        rDistRight = L + d3[0]
+        
+        
+            
+        ### Proses cari tengah ###
+        ## Method 1: SL SR method ##
+        """
+        for i in range(len(S)): # Masih O(n), kalau bisa bikin O(log n)
+            if S[i][0] >= rDistLeft and S[i][0] <= rDistRight:
+                if S[i][0] > L:
+                    SR.append(S[i])
+                else:
+                    SL.append(S[i])
+                    
+        for i in range(0, len(S[floor(len(S)/2):]),-1):
+            if S[i][0] < L-d3[0]:
+                break
+            SL.append(S[i])
+        for i in range(len(S[floor(len(S)/2):]), len(S)): # Rawan bug, coba cek lagi
+            if S[i][0] > L+d3[0]:
+                break
+            SR.append(S[i])
+        for i in range(len(SL)):
+            """
+        ## Method 2 ##
+        # Kelihatan O(n^2), tapi sebenarnya O(n) berdasarkan suatu pembuktian#
+        #  #
+        for i in range(len(S)):
+            if S[i][0] > L+d3[0]:
+                break
+            if(S[i][0] <=L + d3[0] and (S[i][0] >=L - d3[0])):
+                SL.append(S[i])     
+        SL = sortListY(SL)#Sort first by y 
+        print(SL)
+        d = d3 # d bisa saja nggak dibutuhkan
+        for i in range(len(SL)):
+            for j in range(i+1, len(SL)):
+                if SL[i][1] - SL[j][1] > d[0]:
+                    break
+                else:
+                    if(EuclideanDistance(SL[i], SL[j])[0] < d3[0]):
+                        d3 = EuclideanDistance(SL[i], SL[j]) 
+        if d[0] > d3[0]:
+            return d3
+        else:
+            return d            
+                    
+        
+        
+
 
 def DivNCon(S):
     if (len(S)==3):
@@ -24,11 +114,12 @@ def DivNCon(S):
         print("masuk sini")
         #Bagi rata
         print("nnn " + str(S[:floor(len(S)/2)]))
-        print("nnn " + str(S[floor(len(S)/2):(len(S))]))
+        print("nnn " + str(S[floor(len(S)/2):]))
         # print(floor(len(S)/2))
         # print(floor(len(S)/2)+1)
         # print(S[floor(len(S)/2)][0])
         # print(S[floor(len(S)/2)+1][0])
+        """
         if (S[floor(len(S)/2)-1][0] != S[floor(len(S)/2)][0]):
             # print("yg bedaaaaaaa")
             L = (S[floor(len(S)/2) - 1][0] + S[floor(len(S)/2)][0])/2
@@ -38,8 +129,9 @@ def DivNCon(S):
             # print("yg samaaaaaaa")
             return DivNCon(S[floor(len(S)/2)-1:floor(len(S)/2)+1])
             # L = S[floor(len(S)/2)][0]
-            # d1 = DivNCon(S[:floor(len(S)/2)+1])
-            # d2 = DivNCon(S[floor(len(S)/2)+1:(len(S))])
+            """
+        d1 = DivNCon(S[:floor(len(S)/2)])
+        d2 = DivNCon(S[floor(len(S)/2):])
             
         
         
@@ -53,7 +145,11 @@ def DivNCon(S):
         SL = []
         SR = []
         # SMiddle = []
-        # L  = S[floor(len(S)/2)][0]
+        if(len(S) %2 == 0):
+            L= (S[floor(len(S)/2)][0] + floor(len(S)/2)-1)/2
+        else:
+            L  = S[floor(len(S)/2)][0]
+        
         print("L nih " +str(L))
         rDistLeft = L - d3[0]
         rDistRight = L + d3[0]
@@ -95,7 +191,8 @@ def EuclideanDistance(a, b):
 
 def sortList(S):
     return S[S[:,0].argsort()]
-
+def sortListY(S):
+    return sorted(S,key = lambda x: x[1])
 
 def BruteForce(S):
     d = EuclideanDistance(S[0], S[1])
