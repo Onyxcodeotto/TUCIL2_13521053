@@ -28,7 +28,7 @@ if (dimension == 3):
     # zb = List_PointsBruteForce[:,2]
     Phasil = np.concatenate(([hasil[1]], [hasil[2]]), axis=0)
     PhasilBrute = np.concatenate(([hasilB[1]], [hasilB[2]]), axis=0)
-    print (Phasil)
+    # print (Phasil)
     xhasil = Phasil[:,0]
     yhasil = Phasil[:,1]
     zhasil = Phasil[:,2]
@@ -64,7 +64,7 @@ elif(dimension == 2 ):
     y = List_Points[:,1]
     Phasil = np.concatenate(([hasil[1]], [hasil[2]]), axis=0)
     PhasilBrute = np.concatenate(([hasilB[1]], [hasilB[2]]), axis=0)
-    print (Phasil)
+    # print (Phasil)
     xhasil = Phasil[:,0]
     yhasil = Phasil[:,1]
     xhasilB = PhasilBrute[:,0]
@@ -88,7 +88,7 @@ elif (dimension == 1):
     x = List_Points[:,0]
     Phasil = np.concatenate(([hasil[1]], [hasil[2]]), axis=0)
     PhasilBrute = np.concatenate(([hasilB[1]], [hasilB[2]]), axis=0)
-    print (Phasil)
+    # print (Phasil)
     xhasil = Phasil[:,0]
     xhasilB = PhasilBrute[:,0]
     # print(x, y)
