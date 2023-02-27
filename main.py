@@ -5,8 +5,8 @@ S2 = np.array([[1,3,0,1],[12,30,0,1],[40,50,0,1],[5,1,0,0],[12,10,0,0],[3,4,0,1]
 #Result = 1.41421
 
 lower_bound = 0
-upper_bound = 100
-dimension = 2
+upper_bound = 1000
+dimension = 5
 
 # Stest = np.array([[1,1,0],[3,0,1],[7,8,9]])
 Stest = np.array([[4,3,1],[3,1,0],[3,3,4],[4,3,0]])
@@ -132,10 +132,13 @@ print(List_Points)
 List_PointsBruteForce = List_Points.copy()
 # hasil = DivNCon(sortList(List_Points))
 # hasilB = BruteForce(sortList(List_PointsBruteForce))
-hasil = DivNConBigD(sortList(Stest2), 2)
-hasilB = BruteForce(sortList(Stest2))  
-print("titik 1 = ", hasil[1])
-print("titik 2 = ", hasil[2])
+id = np.arange(len(List_Points))[:, np.newaxis]
+print(id)
+print(np.concatenate((id,List_Points), axis = 1))
+hasil = DivNConBigD(sortListAxis(np.concatenate((id, List_Points), axis = 1),0), dimension, 0)
+hasilB, brute = BruteForce(sortList(List_Points))  
+print("titik 1 = ", List_Points[hasil[1]])
+print("titik 2 = ", List_Points[hasil[2]])
 print(hasil[0])
 
 print()
@@ -149,3 +152,7 @@ if (hasil[0] == hasilB[0]):
     print("Hasil sama")
 else:
     print("SALAHH")
+
+    
+print(getDivcon())
+print(brute)
