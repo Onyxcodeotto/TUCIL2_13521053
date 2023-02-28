@@ -7,7 +7,7 @@ upper_bound = 1000
 dimension = 3
 
 # Test Case
-# Stest = np.array([[1,1,0],[3,0,1],[7,8,9]])
+test = np.array([[1,1,0],[3,0,1],[7,8,9]])
 S = np.array([[2,3],[12,30],[40,50],[5,1],[12,10],[3,4]])
 S2 = np.array([[1,3,0,1],[12,30,0,1],[40,50,0,1],[5,1,0,0],[12,10,0,0],[3,4,0,1]])
 Stest = np.array([[4,3,1],[3,1,0],[3,3,4],[4,3,0]])
@@ -110,12 +110,15 @@ Stest6 = np.array([[42, 91],
  [60, 17],
  [23, 35]])
 
+# Menerima input dari user
 print("Masukan banyak dimensi")
 dimension = int(input("dimensi = "))
 print("Masukan banyak titik")
 n = int(input("n = "))
 List_Points = np.empty((0,dimension), int)
 print()
+
+# Random titik
 for i in range(n):
     # print("Masukan titik ke-", i+1, ": ")
     # x1 = int(input())
@@ -125,38 +128,23 @@ for i in range(n):
     # List_Points = np.append(List_Points, np.array([[x1,x2,x3]]), axis=0)
     List_Points = np.append(List_Points, np.random.randint(lower_bound, upper_bound, size=(1, dimension)), axis=0)
 
-# List_Points = np.append(List_Points, np.array([[7, 8, 9]]), axis=0)
-# print(Stest)
-# print(List_Points)
-# print(DivNCon(sortList(Stest)))
-
+# Eksekusi program
 List_PointsBruteForce = sortList(List_Points.copy())
-# hasil = DivNCon(sortList(List_Points))
-# hasilB = BruteForce(sortList(List_PointsBruteForce))
-id = np.arange(len(List_Points))[:, np.newaxis]
-# print(id)
-#print(np.concatenate((id,List_Points), axis = 1))
-# hasilD = DivNConBigD(sortListAxis(np.concatenate((id, List_Points), axis = 1),0), dimension, 0)
 sortedListX = sortList(List_Points)
-# if(dimension != 1):
-#     sortedListY = sortListY(List_Points)
 t1 = time()
 hasil,count = DivNCon(sortedListX, dimension, 0)
 t2 = time()
 hasilB, brute = BruteForce(List_Points)  
 t3 = time()
-# print("titik 1 D= ", List_Points[hasilD[1]])
-# print("titik 2 D= ", List_Points[hasilD[2]])
-# print(hasilD[0])
+
+# Menampilkan hasil
 print("titik 1 = ", hasil[1])
 print("titik 2 = ", hasil[2])
-print(hasil[0])
-
+print("Distance = ", hasil[0])
 print()
 print("titik 1 Brute = ", hasilB[1])
 print("titik 2 Brute = ", hasilB[2])
-print(hasilB[0])
-# from viz import *
+print("Distance = ", hasilB[0])
 
 print()
 if (hasil[0] == hasilB[0]):
