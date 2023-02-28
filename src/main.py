@@ -136,8 +136,6 @@ while not valid:
         print("Jumlah titik minimal 2\n")
     else:
         valid = True
-
-
 List_Points = np.empty((0,dimension), float)
 print()
 
