@@ -1,5 +1,6 @@
 from functions import *
 from time import time
+import platform 
 
 S = np.array([[2,3],[12,30],[40,50],[5,1],[12,10],[3,4]])
 S2 = np.array([[1,3,0,1],[12,30,0,1],[40,50,0,1],[5,1,0,0],[12,10,0,0],[3,4,0,1]])
@@ -163,12 +164,13 @@ print()
 if (hasil[0] == hasilB[0]):
     print("Hasil sama")
 else:
-    print("SALAHH")
+    print("Hasil beda")
 
 print("time divide and conquer = ", t2-t1)
 print("total execution = ", count)
 print()
 print("time brute force = ", t3-t2)
 print("total execution = ", brute)
+print("dieksekusi pada ", platform.machine())
     
 # print(getDivcon())
