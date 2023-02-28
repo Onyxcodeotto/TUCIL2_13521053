@@ -111,10 +111,31 @@ Stest6 = np.array([[42, 91],
  [23, 35]])
 
 # Menerima input dari user
-print("Masukan banyak dimensi")
-dimension = int(input("dimensi = "))
-print("Masukan banyak titik")
-n = int(input("n = "))
+valid = False
+while not valid:
+    print("Masukan banyak dimensi")
+    try:
+        dimension = int(input("dimensi = "))
+    except:
+        continue
+    if(dimension<1):
+        print("Dimensi harus >= 1")
+    else:
+        valid = True
+        
+valid = False
+while not valid:
+    print("Masukan banyak titik")
+    try:
+        n = int(input("n = "))
+    except:
+        continue
+    if(n<2):
+        print("Jumlah titik minimal 2")
+    else:
+        valid = True
+
+
 List_Points = np.empty((0,dimension), float)
 print()
 
