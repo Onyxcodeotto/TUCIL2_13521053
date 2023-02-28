@@ -157,10 +157,10 @@ else:
     print("Hasil beda")
 
 print("time divide and conquer = ", t2-t1)
-print("total execution = ", count)
+print("Euclidean distance function call count = ", count)
 print()
 print("time brute force = ", t3-t2)
-print("total execution = ", brute)
+print("Euclidean distance function call count = ", brute)
 print()
 print("dieksekusi pada ", platform.machine())
     
