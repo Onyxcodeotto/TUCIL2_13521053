@@ -1,5 +1,6 @@
 import numpy as np
 from math import *
+from sort import *
 
 divcon = 0
 def getDivcon():
@@ -100,8 +101,6 @@ def DivNConBigD(S,D, start):
                 return d            
                     
         
-        
-
 
 def DivNCon(S, D, count):
     # S: Set of points
@@ -147,7 +146,7 @@ def DivNCon(S, D, count):
 
         
         if (D != 1):
-            SL = sortListY(SL)
+            sortListY(SL)
             for i in range(len(SL)):
                 j= i+1
                 while(j<len(SL) and SL[j][1] - SL[i][1]<d3[0]):
@@ -166,9 +165,7 @@ def DivNCon(S, D, count):
                         d3 = temp
         return d3, count
         
-        
-    
-         
+                
 
 def EuclideanDistanceBF(a, b):
     # return np.sqrt(np.sum((a - b)**2))
@@ -178,13 +175,7 @@ def EuclideanDistanceBF(a, b):
 
 def DivNConEuclideanDistance(a,b):
     return np.linalg.norm(a[1:]-b[1:]), a[0], b[0]
-
-def sortList(S):# Pake buat brute force saja
-    return S[S[:,0].argsort()]
-def sortListY(S):
-    return S[S[:,1].argsort()]
-def sortListAxis(S, axis):
-    return S[S[:,axis+1].argsort()]
+    
 def BruteForce(S):
     brute = 0
     d = EuclideanDistanceBF(S[0], S[1])
