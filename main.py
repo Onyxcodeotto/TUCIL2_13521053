@@ -1,4 +1,5 @@
 from functions import *
+from time import time
 
 S = np.array([[2,3],[12,30],[40,50],[5,1],[12,10],[3,4]])
 S2 = np.array([[1,3,0,1],[12,30,0,1],[40,50,0,1],[5,1,0,0],[12,10,0,0],[3,4,0,1]])
@@ -110,7 +111,8 @@ Stest6 = np.array([[42, 91],
  [23, 35]])
 # Stest = np.array([[1,0,0],[2,0,1],[2,0,2]])
 # print(EuclideanDistance(Stest[0], Stest[1]))
-
+print("Masukan banyak dimensi")
+dimension = int(input("dimensi = "))
 print("Masukan banyak titik")
 n = int(input("n = "))
 List_Points = np.empty((0,dimension), int)
@@ -126,21 +128,24 @@ for i in range(n):
 
 # List_Points = np.append(List_Points, np.array([[7, 8, 9]]), axis=0)
 # print(Stest)
-print(List_Points)
+# print(List_Points)
 # print(DivNCon(sortList(Stest)))
 
 List_PointsBruteForce = List_Points.copy()
 # hasil = DivNCon(sortList(List_Points))
 # hasilB = BruteForce(sortList(List_PointsBruteForce))
 id = np.arange(len(List_Points))[:, np.newaxis]
-print(id)
+# print(id)
 #print(np.concatenate((id,List_Points), axis = 1))
-hasilD = DivNConBigD(sortListAxis(np.concatenate((id, List_Points), axis = 1),0), dimension, 0)
+# hasilD = DivNConBigD(sortListAxis(np.concatenate((id, List_Points), axis = 1),0), dimension, 0)
+t1 = time()
 hasil = DivNCon(sortList(List_Points), dimension)
+t2 = time()
 hasilB, brute = BruteForce(sortList(List_Points))  
-print("titik 1 D= ", List_Points[hasilD[1]])
-print("titik 2 D= ", List_Points[hasilD[2]])
-print(hasilD[0])
+t3 = time()
+# print("titik 1 D= ", List_Points[hasilD[1]])
+# print("titik 2 D= ", List_Points[hasilD[2]])
+# print(hasilD[0])
 print("titik 1 = ", hasil[1])
 print("titik 2 = ", hasil[2])
 print(hasil[0])
@@ -157,7 +162,10 @@ if (hasil[0] == hasilB[0]):
 else:
     print("SALAHH")
 
+print("time divide and conquer = ", t2-t1)
+print("total execution = ", getDivcon2())
+print()
+print("time brute force = ", t3-t2)
+print("total execution = ", brute)
     
-print(getDivcon())
-print(getDivcon2())
-print(brute)
+# print(getDivcon())
