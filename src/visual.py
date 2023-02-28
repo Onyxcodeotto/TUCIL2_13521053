@@ -1,14 +1,13 @@
-# importing mplot3d toolkits, numpy and matplotlib
-from mpl_toolkits import mplot3d
+# importing main, numpy and matplotlib
 import numpy as np
 import matplotlib.pyplot as plt
 from main import *
 
 fig = plt.figure()
-pointHasilColor = 'red'
+pointHasilColor = 'brown'
 pointHasilColorB = 'yellow'
-pointsColor = 'blue'
-lineHasilColor = 'green'
+pointsColor = 'green'
+lineHasilColor = 'red'
 lineHasilColorB = 'yellow'
 lineWidthConts = 2
 
