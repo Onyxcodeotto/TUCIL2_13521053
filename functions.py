@@ -2,9 +2,13 @@ import numpy as np
 from math import *
 
 divcon = 0
+divcon2 = 0
 def getDivcon():
     global divcon
     return divcon
+def getDivcon2():
+    global divcon2
+    return divcon2
 def DivNConBigD(S,D, start):
     global divcon
     # S: Set of points
@@ -105,13 +109,15 @@ def DivNConBigD(S,D, start):
         
 
 
-def DivNCon(S):
+def DivNCon(S, D):
+    global divcon2
     if (len(S)==3):
         print("3 nih")
         print(S)
-        d2 = DivNCon(S[1:3])
+        d2 = DivNCon(S[1:3], D)
         dm1 = EuclideanDistanceBF(S[0], S[1])
         dm2 = EuclideanDistanceBF(S[0], S[2])
+        divcon2 +=2
         if d2[0] <=  dm1[0] and d2[0] <= dm2[0]:
             return d2
         elif dm1[0] <= dm2[0] and dm1[0] <= d2[0]:
@@ -144,8 +150,8 @@ def DivNCon(S):
             return DivNCon(S[floor(len(S)/2)-1:floor(len(S)/2)+1])
             # L = S[floor(len(S)/2)][0]
             """
-        d1 = DivNCon(S[:floor(len(S)/2)])
-        d2 = DivNCon(S[floor(len(S)/2):])
+        d1 = DivNCon(S[:floor(len(S)/2)], D)
+        d2 = DivNCon(S[floor(len(S)/2):], D)
             
         
         
@@ -156,11 +162,11 @@ def DivNCon(S):
             d3 = d2
         # d3 = min(d1,d2)
         # point1 = 
-        SL = []
+        SL = np.empty((0,D), int)
         SR = []
         # SMiddle = []
         if(len(S) %2 == 0):
-            L= (S[floor(len(S)/2)][0] + floor(len(S)/2)-1)/2
+            L= (S[floor(len(S)/2)][0] + S[floor(len(S)/2)-1][0])/2
         else:
             L  = S[floor(len(S)/2)][0]
         
@@ -170,9 +176,9 @@ def DivNCon(S):
         for i in range(len(S)):
             if S[i][0] >= rDistLeft and S[i][0] <= rDistRight:
                 if S[i][0] > L:
-                    SR.append(S[i])
+                    SL = np.append(SL,[S[i]], axis = 0)  
                 else:
-                    SL.append(S[i])
+                    SL = np.append(SL,[S[i]], axis = 0)  
         # print(SL)
         # print(SR)
         
@@ -184,16 +190,24 @@ def DivNCon(S):
         #     if S[i][0] > L+d3[0]:
         #         break
         #     SR.append(S[i])
-                
+        print(SL)
+        
+        SL = sortListY(SL)
         for i in range(len(SL)):
-            for j in range(len(SR)):
-                if EuclideanDistanceBF(SL[i], SR[j])[0] <= d3[0]:
-                    d3 = EuclideanDistanceBF(SL[i], SR[j])
+            j= i+1
+            while(j<len(SL) and SL[j][1] - SL[i][1]<d3[0]):
+                divcon2 +=1
+                if EuclideanDistanceBF(SL[i], SL[j])[0] <= d3[0]:
+                    divcon2 +=1
+                    d3 = EuclideanDistanceBF(SL[i], SL[j])
                     print("Distance " + str(d3[0]))
+                j+=1
                     # point1 = EuclideanDistance(SL[j], SR[i])[1]
                     # point2 = EuclideanDistance(SL[j], SR[i])[2]
         #output
         return d3
+        
+        
     
          
 
@@ -209,7 +223,7 @@ def DivNConEuclideanDistance(a,b):
 def sortList(S):# Pake buat brute force saja
     return S[S[:,0].argsort()]
 def sortListY(S):
-    return S[S[:,2].argsort()]
+    return S[S[:,1].argsort()]
 def sortListAxis(S, axis):
     return S[S[:,axis+1].argsort()]
 def BruteForce(S):
