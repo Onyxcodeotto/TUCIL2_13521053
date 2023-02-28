@@ -86,20 +86,24 @@ elif (dimension == 1):
     # ax = plt.figure()
     # defining all 3 axis
     x = List_Points[:,0]
+    y = np.array([0]*len(List_Points))
     Phasil = np.concatenate(([hasil[1]], [hasil[2]]), axis=0)
     PhasilBrute = np.concatenate(([hasilB[1]], [hasilB[2]]), axis=0)
     # print (Phasil)
     xhasil = Phasil[:,0]
+    yhasil = np.array([0]*len(Phasil))
     xhasilB = PhasilBrute[:,0]
+    yhasilB = np.array([0]*len(PhasilBrute))
     # print(x, y)
     
     # plotting
     plt.plot(xhasil, lineHasilColor, linewidth = lineWidthConts)
     plt.plot(xhasilB, lineHasilColorB, linewidth = lineWidthConts)
     # make points
-    plt.scatter( x, color = pointsColor)
-    plt.scatter( xhasil, color = pointHasilColor)
-    plt.scatter( xhasilB, color = pointHasilColorB)
+    plt.ylim([-1, 1])
+    plt.scatter( x, y, color = pointsColor)
+    plt.scatter( xhasil, yhasil, color = pointHasilColor)
+    plt.scatter( xhasilB, yhasilB, color = pointHasilColorB)
     plt.title('1D line plot')
     plt.xlabel('x-axis')
     plt.ylabel('y-axis')
