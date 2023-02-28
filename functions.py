@@ -112,8 +112,8 @@ def DivNConBigD(S,D, start):
 def DivNCon(S, D):
     global divcon2
     if (len(S)==3):
-        print("3 nih")
-        print(S)
+        # print("3 nih")
+        # print(S)
         d2 = DivNCon(S[1:3], D)
         dm1 = EuclideanDistanceBF(S[0], S[1])
         dm2 = EuclideanDistanceBF(S[0], S[2])
@@ -127,14 +127,14 @@ def DivNCon(S, D):
         # return min(d2, EuclideanDistance(S[0], S[1]), EuclideanDistance(S[0], S[2]))
         
     elif(len(S) == 2):
-        print("2 nih")
-        print(S)
+        # print("2 nih")
+        # print(S)
         return EuclideanDistanceBF(S[0],S[1])
     else:
-        print("masuk sini")
-        #Bagi rata
-        print("nnn " + str(S[:floor(len(S)/2)]))
-        print("nnn " + str(S[floor(len(S)/2):]))
+        # print("masuk sini")
+        # #Bagi rata
+        # print("nnn " + str(S[:floor(len(S)/2)]))
+        # print("nnn " + str(S[floor(len(S)/2):]))
         # print(floor(len(S)/2))
         # print(floor(len(S)/2)+1)
         # print(S[floor(len(S)/2)][0])
@@ -170,7 +170,7 @@ def DivNCon(S, D):
         else:
             L  = S[floor(len(S)/2)][0]
         
-        print("L nih " +str(L))
+        # print("L nih " +str(L))
         rDistLeft = L - d3[0]
         rDistRight = L + d3[0]
         for i in range(len(S)):
@@ -190,21 +190,28 @@ def DivNCon(S, D):
         #     if S[i][0] > L+d3[0]:
         #         break
         #     SR.append(S[i])
-        print(SL)
+        # print(SL)
         
-        SL = sortListY(SL)
-        for i in range(len(SL)):
-            j= i+1
-            while(j<len(SL) and SL[j][1] - SL[i][1]<d3[0]):
-                divcon2 +=1
-                if EuclideanDistanceBF(SL[i], SL[j])[0] <= d3[0]:
+        if (D != 1):
+            SL = sortListY(SL)
+            for i in range(len(SL)):
+                j= i+1
+                while(j<len(SL) and SL[j][1] - SL[i][1]<d3[0]):
                     divcon2 +=1
-                    d3 = EuclideanDistanceBF(SL[i], SL[j])
-                    print("Distance " + str(d3[0]))
-                j+=1
-                    # point1 = EuclideanDistance(SL[j], SR[i])[1]
-                    # point2 = EuclideanDistance(SL[j], SR[i])[2]
-        #output
+                    if EuclideanDistanceBF(SL[i], SL[j])[0] <= d3[0]:
+                        divcon2 +=1
+                        d3 = EuclideanDistanceBF(SL[i], SL[j])
+                        # print("Distance " + str(d3[0]))
+                    j+=1
+                        # point1 = EuclideanDistance(SL[j], SR[i])[1]
+                        # point2 = EuclideanDistance(SL[j], SR[i])[2]
+        else :
+            for i in range(len(SL)):
+                for j in range(i+1, len(SL)):
+                    temp = EuclideanDistanceBF(SL[i], SL[j])
+                    divcon2+=1
+                    if (temp[0] <= d3[0]):
+                        d3 = temp
         return d3
         
         
