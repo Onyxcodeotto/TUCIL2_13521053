@@ -14,6 +14,9 @@ Tugas Kecil 2 IF2211 – Strategi Algoritma Tahun 2022/2023
 
 
 ## General Information
+### Mencari Pasangan Titik Terdekat 3D dengan Algoritma Divide and Conquer
+
+Persoalan tersebut dirumuskan untuk titik pada bidang datar (2D). Pada Tucil 2 kali ini kita mengembangkan algoritma mencari sepasang titik terdekat pada bidang 3D. Misalkan terdapat n buah titik pada ruang 3D. Setiap titik P di dalam ruang dinyatakan dengan koordinat P = (x, y, z). Kita mencari sepasang titik yang mempunyai jarak terdekat satu sama lain. Jarak dua buah titk P1 = (x1, y1, z1) dan P2 = (x2, y2, z2) dihitung dengan rumus Euclidean 
 
 
 
@@ -24,6 +27,15 @@ Tugas Kecil 2 IF2211 – Strategi Algoritma Tahun 2022/2023
 
 
 ## Penjelasan Singkat Algoritma
+1.	Urutkan array of points berdasarkan besar koordinat x.
+2.	Jika jumlah titik < =3, selesaikan dengan bruteforce.
+3.	Jika jumlah titik > 3, cari L yang merupakan median dari semua koordinat x, kemudian bagi ruang menjadi 2 ruang dengan jumlah point yang sama menggunakan median L.
+4.	Lakukan rekursi pada setiap ruang dan simpan nilainya dalam d1 dan d2.
+5.	Ambil nilai terkecil dari d1 dan d2, simpan di d3.
+6.	Kumpulkan semua titik yang berada di antara L + d3 dan L-d3 pada sumbu x, simpan dalam array SL.
+7.	Urutkan semua titik pada SL berdasarkan sumbu Y.
+8.	Lakukan traversal pada semua titik pada SL. Untuk setiap titik, lakukan perbandingan pada titik-titik selanjutnya pada sumbu Y menggunakan jarak euclidean. Jika jarak euclideannya lebih kecil dari nilai d3, ubah nilai d3 dengan nilai jarak euclidean tersebut. Ulangi hingga selisih titik dengan titik yang dibandingkanny pada sumbu Y melebihi nilai d3. Jika melebihi d3, lanjutkan traversal pada titik selanjutnya.
+9.	Kembalikan nilai d3.
 
 
 ## Features
@@ -33,7 +45,7 @@ Tugas Kecil 2 IF2211 – Strategi Algoritma Tahun 2022/2023
 
 
 ## Screenshots
-![Example screenshot](./doc/.png)
+![Example screenshot](./doc/PlotEx.jpg)
 
 
 ## Cara menjalankan program 
