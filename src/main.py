@@ -129,12 +129,16 @@ for i in range(n):
     List_Points = np.append(List_Points, np.random.randint(lower_bound, upper_bound, size=(1, dimension)), axis=0)
 
 # Eksekusi program
-List_PointsBruteForce = sortList(List_Points.copy())
-sortedListX = sortList(List_Points)
+List_PointsBruteForce = (List_Points.copy())
+sortList(List_PointsBruteForce)
+sortList(List_Points)
+# print(List_Points)
+# print(len(sortedListX))
+# print(len(List_Points))
 t1 = time()
-hasil,count = DivNCon(sortedListX, dimension, 0)
+hasil, count = DivNCon(List_Points, dimension, 0)
 t2 = time()
-hasilB, brute = BruteForce(List_Points)  
+hasilB, brute = BruteForce(List_PointsBruteForce)  
 t3 = time()
 
 # Menampilkan hasil
