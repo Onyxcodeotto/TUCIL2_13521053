@@ -94,5 +94,5 @@ elif (dimension == 1):
     plt.show()
 
 else :
-    print('Error plotting, dimension not supported')
+    print('Error plotting, dimension not supported (dimension must be 1, 2 or 3)')
     
