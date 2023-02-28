@@ -139,7 +139,8 @@ id = np.arange(len(List_Points))[:, np.newaxis]
 #print(np.concatenate((id,List_Points), axis = 1))
 # hasilD = DivNConBigD(sortListAxis(np.concatenate((id, List_Points), axis = 1),0), dimension, 0)
 sortedListX = sortList(List_Points)
-sortedListY = sortListY(List_Points)
+if(dimension != 1):
+    sortedListY = sortListY(List_Points)
 t1 = time()
 hasil = DivNCon(sortedListX, dimension)
 t2 = time()
