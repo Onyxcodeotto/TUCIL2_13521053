@@ -117,9 +117,10 @@ while not valid:
     try:
         dimension = int(input("dimensi = "))
     except:
+        print("Masukkan harus integer\n")
         continue
     if(dimension<1):
-        print("Dimensi harus >= 1")
+        print("Dimensi harus >= 1\n")
     else:
         valid = True
         
@@ -129,9 +130,10 @@ while not valid:
     try:
         n = int(input("n = "))
     except:
+        print("Masukkan harus integer\n")
         continue
     if(n<2):
-        print("Jumlah titik minimal 2")
+        print("Jumlah titik minimal 2\n")
     else:
         valid = True
 
