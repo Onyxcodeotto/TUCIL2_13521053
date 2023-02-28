@@ -2,15 +2,14 @@ from functions import *
 from time import time
 import platform 
 
-S = np.array([[2,3],[12,30],[40,50],[5,1],[12,10],[3,4]])
-S2 = np.array([[1,3,0,1],[12,30,0,1],[40,50,0,1],[5,1,0,0],[12,10,0,0],[3,4,0,1]])
-#Result = 1.41421
-
 lower_bound = 0
 upper_bound = 1000
 dimension = 3
 
+# Test Case
 # Stest = np.array([[1,1,0],[3,0,1],[7,8,9]])
+S = np.array([[2,3],[12,30],[40,50],[5,1],[12,10],[3,4]])
+S2 = np.array([[1,3,0,1],[12,30,0,1],[40,50,0,1],[5,1,0,0],[12,10,0,0],[3,4,0,1]])
 Stest = np.array([[4,3,1],[3,1,0],[3,3,4],[4,3,0]])
 Stest2 = np.array([[78, 75],[80, 85],[78, 20],[57, 47], [4, 80]])
 Stest3 = np.array([[79,40],
@@ -110,8 +109,7 @@ Stest6 = np.array([[42, 91],
  [ 0, 68],
  [60, 17],
  [23, 35]])
-# Stest = np.array([[1,0,0],[2,0,1],[2,0,2]])
-# print(EuclideanDistance(Stest[0], Stest[1]))
+
 print("Masukan banyak dimensi")
 dimension = int(input("dimensi = "))
 print("Masukan banyak titik")
@@ -140,8 +138,8 @@ id = np.arange(len(List_Points))[:, np.newaxis]
 #print(np.concatenate((id,List_Points), axis = 1))
 # hasilD = DivNConBigD(sortListAxis(np.concatenate((id, List_Points), axis = 1),0), dimension, 0)
 sortedListX = sortList(List_Points)
-if(dimension != 1):
-    sortedListY = sortListY(List_Points)
+# if(dimension != 1):
+#     sortedListY = sortListY(List_Points)
 t1 = time()
 hasil = DivNCon(sortedListX, dimension)
 t2 = time()
@@ -171,6 +169,6 @@ print("total execution = ", getDivcon2())
 print()
 print("time brute force = ", t3-t2)
 print("total execution = ", brute)
+print()
 print("dieksekusi pada ", platform.machine())
-    
 # print(getDivcon())
