@@ -37,7 +37,7 @@ def DivNConBigD(S,D, start):
                 d3 = d1
             else:
                 d3 = d2
-            SL = np.empty((0,D+start+1), int)
+            SL = np.empty((0,D+start+1), float)
             if(len(S) %2 == 0):
                 L= (S[floor(len(S)/2)][start + 1] + S[floor(len(S)/2)-1][start + 1])/2
             else:
@@ -71,7 +71,7 @@ def DivNConBigD(S,D, start):
             ## Method 2 ##
             # Kelihatan O(n^2), tapi sebenarnya O(n) berdasarkan suatu pembuktian#
             #  #
-            SL = np.empty((0,D+start+1), int)
+            SL = np.empty((0,D+start+1), float)
             if(len(S) %2 == 0):
                 L= (S[floor(len(S)/2)][start+1] + S[floor(len(S)/2)-1][start+1])/2
             else:
@@ -132,7 +132,7 @@ def DivNCon(S, D, count):
             d3 = d1
         else:
             d3 = d2
-        SL = np.empty((0,D), int)
+        SL = np.empty((0,D), float)
         if(len(S) %2 == 0):
             L= (S[floor(len(S)/2)][0] + S[floor(len(S)/2)-1][0])/2
         else:
@@ -143,7 +143,6 @@ def DivNCon(S, D, count):
         for i in range(len(S)):
             if rDistRight>= S[i][0] >= rDistLeft and S[i][0] <= rDistRight:
                 SL = np.append(SL,[S[i]], axis = 0)  
-            i+=1
 
         
         if (D != 1):
@@ -156,7 +155,7 @@ def DivNCon(S, D, count):
                     if temp[0] <= d3[0]:
                         d3 = temp
                     j+=1
-        else :
+        else:
             for i in range(len(SL)):
                 j = i+1
                 while j<len(S) and SL[j][0] - SL[i][0]<d3[0]:
