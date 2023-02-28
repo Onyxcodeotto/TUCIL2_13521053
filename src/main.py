@@ -141,7 +141,7 @@ sortedListX = sortList(List_Points)
 # if(dimension != 1):
 #     sortedListY = sortListY(List_Points)
 t1 = time()
-hasil = DivNCon(sortedListX, dimension)
+hasil,count = DivNCon(sortedListX, dimension, 0)
 t2 = time()
 hasilB, brute = BruteForce(List_Points)  
 t3 = time()
@@ -165,10 +165,11 @@ else:
     print("Hasil beda")
 
 print("time divide and conquer = ", t2-t1)
-print("total execution = ", getDivcon2())
+print("total execution = ", count)
 print()
 print("time brute force = ", t3-t2)
 print("total execution = ", brute)
 print()
 print("dieksekusi pada ", platform.machine())
+    
 # print(getDivcon())

@@ -2,13 +2,10 @@ import numpy as np
 from math import *
 
 divcon = 0
-divcon2 = 0
 def getDivcon():
     global divcon
     return divcon
-def getDivcon2():
-    global divcon2
-    return divcon2
+
 def DivNConBigD(S,D, start):
     global divcon
     # S: Set of points
@@ -30,9 +27,6 @@ def DivNConBigD(S,D, start):
     elif(len(S) == 2):
         divcon +=1
         return DivNConEuclideanDistance(S[0],S[1])
-    elif (len(S)==0):
-        while(True):
-            n=0
     else:
         if(D>2):
             d1 = DivNConBigD(S[:floor(len(S)/2)], D, start)
@@ -109,110 +103,68 @@ def DivNConBigD(S,D, start):
         
 
 
-def DivNCon(S, D):
-    global divcon2
+def DivNCon(S, D, count):
+    # S: Set of points
+    # D: Dimension
+    # count: Frekuensi pemanggilan fungsi EuclideanDistanceBF
+    #Brute Force untuk len(S)<=3#
     if (len(S)==3):
-        # print("3 nih")
-        # print(S)
-        d2 = DivNCon(S[1:3], D)
+        d2, count = DivNCon(S[1:3], D, count)
         dm1 = EuclideanDistanceBF(S[0], S[1])
         dm2 = EuclideanDistanceBF(S[0], S[2])
-        divcon2 +=2
+        count +=2
         if d2[0] <=  dm1[0] and d2[0] <= dm2[0]:
-            return d2
+            return d2, count
         elif dm1[0] <= dm2[0] and dm1[0] <= d2[0]:
-            return dm1
+            return dm1,count 
         else:
-            return dm2
-        # return min(d2, EuclideanDistance(S[0], S[1]), EuclideanDistance(S[0], S[2]))
+            return dm2, count
         
     elif(len(S) == 2):
-        # print("2 nih")
-        # print(S)
-        return EuclideanDistanceBF(S[0],S[1])
+        count+=1
+        return EuclideanDistanceBF(S[0],S[1]), count
+    
+    
     else:
-        # print("masuk sini")
-        # #Bagi rata
-        # print("nnn " + str(S[:floor(len(S)/2)]))
-        # print("nnn " + str(S[floor(len(S)/2):]))
-        # print(floor(len(S)/2))
-        # print(floor(len(S)/2)+1)
-        # print(S[floor(len(S)/2)][0])
-        # print(S[floor(len(S)/2)+1][0])
-        """
-        if (S[floor(len(S)/2)-1][0] != S[floor(len(S)/2)][0]):
-            # print("yg bedaaaaaaa")
-            L = (S[floor(len(S)/2) - 1][0] + S[floor(len(S)/2)][0])/2
-            d1 = DivNCon(S[:floor(len(S)/2)])
-            d2 = DivNCon(S[floor(len(S)/2):(len(S))])
-        else:
-            # print("yg samaaaaaaa")
-            return DivNCon(S[floor(len(S)/2)-1:floor(len(S)/2)+1])
-            # L = S[floor(len(S)/2)][0]
-            """
-        d1 = DivNCon(S[:floor(len(S)/2)], D)
-        d2 = DivNCon(S[floor(len(S)/2):], D)
-            
-        
-        
-        #solve middle
+        d1, count = DivNCon(S[:floor(len(S)/2)], D,count)
+        d2,count = DivNCon(S[floor(len(S)/2):], D,count)
         if (d1[0] <= d2[0]):
             d3 = d1
         else:
             d3 = d2
-        # d3 = min(d1,d2)
-        # point1 = 
         SL = np.empty((0,D), int)
-        SR = []
-        # SMiddle = []
         if(len(S) %2 == 0):
             L= (S[floor(len(S)/2)][0] + S[floor(len(S)/2)-1][0])/2
         else:
             L  = S[floor(len(S)/2)][0]
         
-        # print("L nih " +str(L))
         rDistLeft = L - d3[0]
         rDistRight = L + d3[0]
         for i in range(len(S)):
-            if S[i][0] >= rDistLeft and S[i][0] <= rDistRight:
-                if S[i][0] > L:
-                    SL = np.append(SL,[S[i]], axis = 0)  
-                else:
-                    SL = np.append(SL,[S[i]], axis = 0)  
-        # print(SL)
-        # print(SR)
-        
-        # for i in range(len(S[:floor(len(S)/2)])-1, -1, -1):
-        #     if S[i][0] < L-d3[0]:
-        #         break
-        #     SL.append(S[i])
-        # for i in range(0, len(S[floor(len(S)/2):-1])):
-        #     if S[i][0] > L+d3[0]:
-        #         break
-        #     SR.append(S[i])
-        # print(SL)
+            if rDistRight>= S[i][0] >= rDistLeft and S[i][0] <= rDistRight:
+                SL = np.append(SL,[S[i]], axis = 0)  
+            i+=1
+
         
         if (D != 1):
             SL = sortListY(SL)
             for i in range(len(SL)):
                 j= i+1
                 while(j<len(SL) and SL[j][1] - SL[i][1]<d3[0]):
-                    divcon2 +=1
-                    if EuclideanDistanceBF(SL[i], SL[j])[0] <= d3[0]:
-                        divcon2 +=1
-                        d3 = EuclideanDistanceBF(SL[i], SL[j])
-                        # print("Distance " + str(d3[0]))
+                    count +=1
+                    temp = EuclideanDistanceBF(SL[i], SL[j])
+                    if temp[0] <= d3[0]:
+                        d3 = temp
                     j+=1
-                        # point1 = EuclideanDistance(SL[j], SR[i])[1]
-                        # point2 = EuclideanDistance(SL[j], SR[i])[2]
         else :
             for i in range(len(SL)):
-                for j in range(i+1, len(SL)):
+                j = i+1
+                while j<len(S) and SL[j][0] - SL[i][0]<d3[0]:
                     temp = EuclideanDistanceBF(SL[i], SL[j])
-                    divcon2+=1
+                    count+=1
                     if (temp[0] <= d3[0]):
                         d3 = temp
-        return d3
+        return d3, count
         
         
     
@@ -240,7 +192,7 @@ def BruteForce(S):
     for i in range(len(S)):
         for j in range(i+1, len(S)):
             brute+=1
-            if EuclideanDistanceBF(S[i], S[j])[0] < d[0]:
-                d = EuclideanDistanceBF(S[i], S[j])
-                brute += 1
+            temp = EuclideanDistanceBF(S[i], S[j])
+            if temp[0] < d[0]:
+                d = temp
     return d, brute
