@@ -30,7 +30,8 @@ def partition(S, low, high, axes):
 	return i + 1
 
 # function to perform quicksort
-
+# Termasuk pada pendekatan sulit membagi,
+# mudah menggabung (hard split/easy join)
 
 def quickSort(S, low, high, axes):
 	if low < high:
