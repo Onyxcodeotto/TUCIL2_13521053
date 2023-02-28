@@ -52,7 +52,8 @@ def DivNConBigD(S,D, start):
             if(len(SL)<2):
                 return d3
             else:
-                d4 = DivNConBigD(sortListAxis(SL, start+1), D-1, start+1)    
+                # d4 = DivNConBigD(sortListAxis(SL, start+1), D-1, start+1)    
+                d4 = DivNConBigD(sortList(SL, start+1), D-1, start+1)    
                 if d4[0]<d3[0]:
                     return d4
                 else:
@@ -82,7 +83,8 @@ def DivNConBigD(S,D, start):
                     break
                 if(S[i][start + 1] <=L + d3[0] and (S[i][start + 1] >=L - d3[0])):
                     SL = np.append(SL,[S[i]], axis = 0)     
-            SL = sortListAxis(SL, start+1)#Sort first by y 
+            # SL = sortListAxis(SL, start+1)#Sort first by y 
+            SL = sortList(SL, start+1)#Sort first by y 
             d = d3 # d bisa saja nggak dibutuhkan
             if(len(SL)<2):
                 return d3
