@@ -2,7 +2,7 @@ from functions import *
 from time import time
 import platform 
 
-lower_bound = 0
+lower_bound = -1000
 upper_bound = 1000
 dimension = 3
 
@@ -115,7 +115,7 @@ print("Masukan banyak dimensi")
 dimension = int(input("dimensi = "))
 print("Masukan banyak titik")
 n = int(input("n = "))
-List_Points = np.empty((0,dimension), int)
+List_Points = np.empty((0,dimension), float)
 print()
 
 # Random titik
@@ -126,7 +126,7 @@ for i in range(n):
     # x3 = int(input())
     # print()
     # List_Points = np.append(List_Points, np.array([[x1,x2,x3]]), axis=0)
-    List_Points = np.append(List_Points, np.random.randint(lower_bound, upper_bound, size=(1, dimension)), axis=0)
+    List_Points = np.append(List_Points, np.random.uniform(lower_bound, upper_bound, size=(1, dimension)), axis=0)
 
 # Eksekusi program
 List_PointsBruteForce = (List_Points.copy())
