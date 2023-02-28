@@ -173,4 +173,3 @@ print("time brute force = ", t3-t2)
 print("total execution = ", brute)
 print("dieksekusi pada ", platform.machine())
     
-# print(getDivcon())

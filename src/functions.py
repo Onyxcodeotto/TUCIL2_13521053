@@ -27,9 +27,6 @@ def DivNConBigD(S,D, start):
     elif(len(S) == 2):
         divcon +=1
         return DivNConEuclideanDistance(S[0],S[1])
-    elif (len(S)==0):
-        while(True):
-            n=0
     else:
         if(D>2):
             d1 = DivNConBigD(S[:floor(len(S)/2)], D, start)
@@ -107,9 +104,11 @@ def DivNConBigD(S,D, start):
 
 
 def DivNCon(S, D, count):
+    # S: Set of points
+    # D: Dimension
+    # count: Frekuensi pemanggilan fungsi EuclideanDistanceBF
+    #Brute Force untuk len(S)<=3#
     if (len(S)==3):
-        # print("3 nih")
-        # print(S)
         d2, count = DivNCon(S[1:3], D, count)
         dm1 = EuclideanDistanceBF(S[0], S[1])
         dm2 = EuclideanDistanceBF(S[0], S[2])
@@ -124,10 +123,11 @@ def DivNCon(S, D, count):
     elif(len(S) == 2):
         count+=1
         return EuclideanDistanceBF(S[0],S[1]), count
+    
+    
     else:
         d1, count = DivNCon(S[:floor(len(S)/2)], D,count)
         d2,count = DivNCon(S[floor(len(S)/2):], D,count)
-        #solve middle
         if (d1[0] <= d2[0]):
             d3 = d1
         else:
@@ -143,6 +143,7 @@ def DivNCon(S, D, count):
         for i in range(len(S)):
             if rDistRight>= S[i][0] >= rDistLeft and S[i][0] <= rDistRight:
                 SL = np.append(SL,[S[i]], axis = 0)  
+            i+=1
 
         
         if (D != 1):
@@ -154,10 +155,7 @@ def DivNCon(S, D, count):
                     temp = EuclideanDistanceBF(SL[i], SL[j])
                     if temp[0] <= d3[0]:
                         d3 = temp
-                        # print("Distance " + str(d3[0]))
                     j+=1
-                        # point1 = EuclideanDistance(SL[j], SR[i])[1]
-                        # point2 = EuclideanDistance(SL[j], SR[i])[2]
         else :
             for i in range(len(SL)):
                 j = i+1
